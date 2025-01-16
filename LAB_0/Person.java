@@ -1,43 +1,49 @@
-// Define a class with private fields
-public class Person {
-    private String name;
-    private int age;
+1. Add comments:
+   Explanation: Adding comments will improve code readability and maintainability.
+   Location: Above the class and method declarations.
+   Before:
+   ```java
+   public class Person {
+       // ...
+   }
+   ```
+   After:
+   ```java
+   /**
+    * Represents a person with a name and age.
+    */
+   public class Person {
+       // ...
 
-    // Constructor
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
+       /**
+        * Constructs a Person object with the given name and age.
+        *
+        * @param name the name of the person
+        * @param age the age of the person
+        */
+       public Person(String name, int age) {
+           // ...
+       }
 
-    // Getter method for name
-    public String getName() {
-        return this.name;
-    }
+       // Add similar comments for other methods
+   }
+   ```
 
-    // Setter method for name
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    // Getter method for age
-    public int getAge() {
-        return this.age;
-    }
-
-    // Setter method for age
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    // Example usage
-    public static void main(String[] args) {
-        Person person = new Person("John Doe", 30);
-        System.out.println("Name: " + person.getName());
-        System.out.println("Age: " + person.getAge());
-
-        person.setName("Jane Doe");
-        person.setAge(31);
-        System.out.println("Updated Name: " + person.getName());
-        System.out.println("Updated Age: " + person.getAge());
-    }
-}
+2. Validate age input:
+   Explanation: It's a good practice to validate user input, especially for fields that have specific constraints (e.g., age should be a positive integer).
+   Location: Inside the `setAge` method.
+   Before:
+   ```java
+   public void setAge(int age) {
+       this.age = age;
+   }
+   ```
+   After:
+   ```java
+   public void setAge(int age) {
+       if (age < 0) {
+           throw new IllegalArgumentException("Age cannot be negative");
+       }
+       this.age = age;
+   }
+   ```

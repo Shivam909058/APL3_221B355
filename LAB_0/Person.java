@@ -1,49 +1,47 @@
-1. Add comments:
-   Explanation: Adding comments will improve code readability and maintainability.
-   Location: Above the class and method declarations.
-   Before:
-   ```java
-   public class Person {
-       // ...
-   }
-   ```
-   After:
-   ```java
-   /**
-    * Represents a person with a name and age.
-    */
-   public class Person {
-       // ...
+1. Adding Comments:
+   - No changes needed. The provided code snippets demonstrate the desired changes.
 
-       /**
-        * Constructs a Person object with the given name and age.
-        *
-        * @param name the name of the person
-        * @param age the age of the person
-        */
-       public Person(String name, int age) {
-           // ...
-       }
+2. Validate Age Input:
+   - Potential improvement:
+     Explanation: Create a custom exception type to better convey the nature of the error.
+     Location: Within the `Person` class, create a new exception class.
+     Before:
+     ```java
+     public class Person {
+         // ...
+     }
+     ```
+     After:
+     ```java
+     public class Person {
+         // ...
 
-       // Add similar comments for other methods
-   }
-   ```
-
-2. Validate age input:
-   Explanation: It's a good practice to validate user input, especially for fields that have specific constraints (e.g., age should be a positive integer).
-   Location: Inside the `setAge` method.
-   Before:
-   ```java
-   public void setAge(int age) {
-       this.age = age;
-   }
-   ```
-   After:
-   ```java
-   public void setAge(int age) {
-       if (age < 0) {
-           throw new IllegalArgumentException("Age cannot be negative");
-       }
-       this.age = age;
-   }
-   ```
+         /**
+          * Exception thrown when an invalid age value is provided.
+          */
+         public static class InvalidAgeException extends IllegalArgumentException {
+             public InvalidAgeException(String message) {
+                 super(message);
+             }
+         }
+     }
+     ```
+     Location: Inside the `setAge` method, throw the custom exception instead of `IllegalArgumentException`.
+     Before:
+     ```java
+     public void setAge(int age) {
+         if (age < 0) {
+             throw new IllegalArgumentException("Age cannot be negative");
+         }
+         this.age = age;
+     }
+     ```
+     After:
+     ```java
+     public void setAge(int age) {
+         if (age < 0) {
+             throw new InvalidAgeException("Age cannot be negative");
+         }
+         this.age = age;
+     }
+     ```

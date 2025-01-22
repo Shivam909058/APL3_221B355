@@ -1,43 +1,47 @@
-// Define a class with private fields
-public class Person {
-    private String name;
-    private int age;
+1. Adding Comments:
+   - No changes needed. The provided code snippets demonstrate the desired changes.
 
-    // Constructor
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
+2. Validate Age Input:
+   - Potential improvement:
+     Explanation: Create a custom exception type to better convey the nature of the error.
+     Location: Within the `Person` class, create a new exception class.
+     Before:
+     ```java
+     public class Person {
+         // ...
+     }
+     ```
+     After:
+     ```java
+     public class Person {
+         // ...
 
-    // Getter method for name
-    public String getName() {
-        return this.name;
-    }
-
-    // Setter method for name
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    // Getter method for age
-    public int getAge() {
-        return this.age;
-    }
-
-    // Setter method for age
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    // Example usage
-    public static void main(String[] args) {
-        Person person = new Person("John Doe", 30);
-        System.out.println("Name: " + person.getName());
-        System.out.println("Age: " + person.getAge());
-
-        person.setName("Jane Doe");
-        person.setAge(31);
-        System.out.println("Updated Name: " + person.getName());
-        System.out.println("Updated Age: " + person.getAge());
-    }
-}
+         /**
+          * Exception thrown when an invalid age value is provided.
+          */
+         public static class InvalidAgeException extends IllegalArgumentException {
+             public InvalidAgeException(String message) {
+                 super(message);
+             }
+         }
+     }
+     ```
+     Location: Inside the `setAge` method, throw the custom exception instead of `IllegalArgumentException`.
+     Before:
+     ```java
+     public void setAge(int age) {
+         if (age < 0) {
+             throw new IllegalArgumentException("Age cannot be negative");
+         }
+         this.age = age;
+     }
+     ```
+     After:
+     ```java
+     public void setAge(int age) {
+         if (age < 0) {
+             throw new InvalidAgeException("Age cannot be negative");
+         }
+         this.age = age;
+     }
+     ```

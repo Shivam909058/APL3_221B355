@@ -1,0 +1,8 @@
+
+docker network ls
+docker network create mongo-network //new network creation
+docker run-d-p 27017:27017 --name mongo --network mongo -network -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin mongo
+
+docker network inspect mongo-network //to see which are connected to mongo network
+
+docker run-d -p 8081:8081 --name mongo -express --network mongo network -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODBURL="mongo://admin@mongo:27017" mongo -express
